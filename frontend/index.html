@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Appointment Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #chatbox { width: 400px; height: 300px; border: 1px solid #ccc; overflow-y: scroll; padding: 10px; margin-bottom: 10px; }
+        #userInput { width: 300px; padding: 8px; }
+        #sendBtn { padding: 8px; }
+        .bot { color: blue; margin: 5px 0; }
+        .user { color: green; margin: 5px 0; text-align: right; }
+    </style>
+</head>
+<body>
+    <h2>Healthcare Appointment Chatbot</h2>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button id="sendBtn">Send</button>
+
+    <script>
+        const chatbox = document.getElementById('chatbox');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        function appendMessage(sender, message) {
+            const div = document.createElement('div');
+            div.className = sender;
+            div.textContent = message;
+            chatbox.appendChild(div);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        sendBtn.onclick = async () => {
+            const message = userInput.value.trim();
+            if(!message) return;
+            appendMessage('user', message);
+            userInput.value = '';
+
+            // Basic local chatbot response simulation
+            let botResponse = '';
+            if(message.toLowerCase().includes('appointment')) {
+                botResponse = 'Please provide your name, preferred date (YYYY-MM-DD), and time (HH:MM) to book an appointment.';
+            } else if(/\b\w+\b/.test(message)) {
+                botResponse = 'Sorry, I can only help with appointment bookings for now. Please mention appointment details.';
+            }
+
+            appendMessage('bot', botResponse);
+        };
+    </script>
+</body>
+</html>
