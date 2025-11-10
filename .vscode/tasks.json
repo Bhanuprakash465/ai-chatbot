@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Backend Server",
+      "type": "shell",
+      "command": "node backend/server.js",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Chatbot CLI",
+      "type": "shell",
+      "command": "node ai_chatbot.js",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
